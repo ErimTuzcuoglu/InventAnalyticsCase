@@ -33,8 +33,8 @@ export default function bookModelRepository() {
         return book;
     };
 
-    const create = async ({ name }) => {
-        await Book.create({ name });
+    const create = async (book) => {
+        await Book.create(book);
         return;
     };
 
