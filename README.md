@@ -9,6 +9,11 @@ This project is a Node.js application designed to work in both development and p
 
    - Docker: Ensure Docker is installed and running on your system. This project uses Docker for both development and production environments.
 
+   - Yarn: Install Yarn package manager if not already installed. Verify with:
+
+    yarn -v
+
+   
 ## Getting Started
 ### Installation
 
@@ -28,9 +33,9 @@ To run the application locally using Docker in development mode (Recommended):
 
     yarn docker:dev
 
-Or with Node.js (You also need run run mongoDB before execute the below command):
+Or with Node.js (You also need run run postgres before execute the below command):
 
-    set NODE_ENV=development && yarn dev
+    yarn dev
 
 ### Production Mode
 
@@ -44,10 +49,5 @@ For running the application in production mode using Docker:
     http://localhost:3000/docs/
 
 #### Production
-    http://localhost:5000/docs/
+    http://localhost:3000/docs/
 
-## Testing
-
-To run tests:
-
-    yarn test
