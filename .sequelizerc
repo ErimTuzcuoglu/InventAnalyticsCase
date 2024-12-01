@@ -1,0 +1,7 @@
+const path = require('path');
+
+module.exports = {
+    config: path.resolve('config', 'ormConfig.js'),
+    'models-path': path.resolve('loaders/database/postgres', 'models'),
+    'migrations-path': path.resolve('loaders/database/postgres', 'migrations'),
+};

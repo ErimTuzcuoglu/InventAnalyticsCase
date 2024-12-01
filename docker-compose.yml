@@ -1,0 +1,45 @@
+version: '3'
+services:
+  app:
+    container_name: library_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=postgres # static
+      - DB_DIALECT=${DB_DIALECT}
+      - SEED_DB=${SEED_DB}
+      - PORT=${PORT}
+      - NODE_ENV=${NODE_ENV}
+      - DB_PORT=5432 # This is given statically because 5432 is used in docker library-network
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - postgres
+    networks:
+      - library-network
+
+  postgres:
+    image: postgres:15
+    container_name: library_postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - "5433:5432"
+    volumes:
+      - /data/postgres:/data/postgres
+    networks:
+      - library-network
+
+networks:
+  library-network:
+    driver: bridge
